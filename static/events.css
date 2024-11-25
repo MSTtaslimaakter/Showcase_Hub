@@ -1,0 +1,39 @@
+/* events.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2.5em;
+  color: #333;
+}
+
+.event-card {
+  width: 80%;
+  margin: 20px auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.event-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.event-card h3 {
+  color: #333;
+  font-size: 1.8em;
+}
+
+.event-card p {
+  font-size: 1.2em;
+  color: #555;
+}

@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Artist Showcase Hub</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'showcase/css/gallery.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Gallery</h1>
+    </header>
+
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="{% static 'showcase/images/painting1.jpg' %}" alt="Painting 1">
+            <h3>Painting 1</h3>
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'showcase/images/illustration1.jpg' %}" alt="Illustration 1">
+            <h3>Illustration 1</h3>
+        </div>
+        <!-- Repeat similar blocks for each gallery item -->
+    </div>
+</body>
+</html>

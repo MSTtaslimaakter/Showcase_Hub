@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Details - Artist Showcase Hub</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'showcase/css/artist_detail.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Loop through the artists (if there are multiple artists) -->
+        {% for artist in artists %}
+        <h1>{{ artist.name }}</h1>
+        <img src="{{ artist.image.url }}" alt="{{ artist.name }}">
+        <div class="bio">
+            <p>{{ artist.bio }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

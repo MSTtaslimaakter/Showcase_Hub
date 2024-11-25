@@ -1,0 +1,33 @@
+/* artist_detail.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.bio {
+  margin-top: 20px;
+  font-size: 1.2em;
+  line-height: 1.8em;
+  color: #555;
+}

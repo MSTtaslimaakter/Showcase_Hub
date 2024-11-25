@@ -16,7 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Hub import views
+from . import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('artist/', views.artist_detail, name='artist_detail'),
+    path('events/', views.event_list, name='events'),
+    path('gallery/', views.gallery, name='gallery'),
+    path('login/', views.login, name='login'),
+    path('signup/', views.signup, name='signup'),
+    path('gallery/<str:category>/', views.gallery, name='gallery'),
+    path('artist/<int:artist_id>/', views.artist_detail, name='artist_detail'),
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
