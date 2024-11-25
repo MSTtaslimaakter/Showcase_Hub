@@ -1,28 +1,75 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Artist Showcase Hub</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'showcase/css/gallery.css' %}">
+    <title>Gallery - Artist's Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'gallery.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Gallery</h1>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Gallery</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'artist' %}">Artists</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <div class="gallery-grid">
-        <div class="gallery-item">
-            <img src="{% static 'showcase/images/painting1.jpg' %}" alt="Painting 1">
-            <h3>Painting 1</h3>
+    <!-- Main Content Section -->
+    <main class="content">
+        <section class="category-selection">
+            <h2>Browse by Category</h2>
+            <div class="categories">
+                <a href="{% if category %}{% url 'gallery_category' category=category %}{% else %}{% url 'gallery' %}{% endif %}">All Categories</a>
+
+                <a href="{% url 'gallery_category' category='paintings' %}">Paintings</a>
+                <a href="{% url 'gallery_category' category='illustrations' %}">Illustrations</a>
+                <a href="{% url 'gallery_category' category='photography' %}">Photography</a>
+                <a href="{% url 'gallery_category' category='abstract-art' %}">Abstract Art</a>
+                <a href="{% url 'gallery_category' category='handcraft' %}">Handcraft</a>
+                
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2>Gallery: {% if category %}{{ category|title }}{% else %}All Categories{% endif %}</h2>
+            
+            <div class="gallery-items">
+                {% for item in galleries %}
+                <div class="gallery-item">
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" width="200" height="200">
+                    <div class="gallery-item-info">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                    <p>No items available in this category.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media!</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/">Facebook</a> |
+                <a href="https://twitter.com/?lang=en">Twitter</a> |
+                <a href="https://www.instagram.com/">Instagram</a>
+            </div>
         </div>
-        <div class="gallery-item">
-            <img src="{% static 'showcase/images/illustration1.jpg' %}" alt="Illustration 1">
-            <h3>Illustration 1</h3>
-        </div>
-        <!-- Repeat similar blocks for each gallery item -->
-    </div>
+    </footer>
 </body>
 </html>

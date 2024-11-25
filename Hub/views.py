@@ -5,27 +5,45 @@ from .models import *
 from django.shortcuts import redirect
 
 # Home Page
+from django.shortcuts import render
+
 def home(request):
     return render(request, 'home.html')
 
-# About Us Page
 def about(request):
     return render(request, 'about.html')
 
-# Artist Page
+def artist(request):
+    return render(request, 'artist.html')
+
+def event(request):
+    return render(request, 'event.html')
+
+def gallery(request):
+    return render(request, 'gallery.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def signup(request):
+    return render(request, 'signup.html')
+
+
+
 def artist_detail(request, artist_id):
+    
     artist = get_object_or_404(Artist, id=artist_id)
-    return render(request, 'artist_detail.html', {'artist': artist})
+    artists = Artist.objects.exclude(id=artist_id)
+    return render(request, 'artist_showcase/artist_detail.html', {'artist': artist, 'artists': artists})
 
-# Event Page
-def event_list(request):
-    events = Event.objects.all()
-    return render(request, 'events.html', {'events': events})
 
-# Gallery Page
-def gallery(request, category):
-    gallery_images = Gallery.objects.filter(category=category)
-    return render(request, 'gallery.html', {'gallery_images': gallery_images})
+def gallery(request, category=None):
+    if category:
+        galleries = Gallery.objects.filter(category=category)
+    else:
+        galleries = Gallery.objects.all()
+    
+    return render(request, 'gallery.html', {'galleries': galleries, 'category': category})
 
 # Login & Signup views (simplified)
 def login(request):
@@ -57,3 +75,10 @@ def artist_delete(request, artist_id):
     artist = get_object_or_404(Artist, id=artist_id)
     artist.delete()
     return redirect('home')
+
+def artist_s(request):
+    artists=Artist.objects.all()
+    context={
+       'artists': artists,
+    }
+    return render (request,'artist_profile.html',context=context)

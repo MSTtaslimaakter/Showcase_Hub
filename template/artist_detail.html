@@ -5,19 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist Details - Artist Showcase Hub</title>
+    <title>{{ artist.name }} - Artist Showcase Hub</title>
     <link rel="stylesheet" type="text/css" href="{% static 'showcase/css/artist_detail.css' %}">
 </head>
 <body>
     <div class="container">
-        <!-- Loop through the artists (if there are multiple artists) -->
-        {% for artist in artists %}
         <h1>{{ artist.name }}</h1>
-        <img src="{{ artist.image.url }}" alt="{{ artist.name }}">
+        <img src="{{ artist.image.url }}" alt="{{ artist.name }}'s Image">
+        
         <div class="bio">
+            <h2>Biography</h2>
             <p>{{ artist.bio }}</p>
         </div>
-        {% endfor %}
+        
+        <div class="other-artists">
+            <h2>Other Artists</h2>
+            {% for other_artist in artists %}
+                <div class="artist-card">
+                    <img src="{{ other_artist.image.url }}" alt="{{ other_artist.name }}">
+                    <h3>{{ other_artist.name }}</h3>
+                    <p>{{ other_artist.bio }}</p>
+                    <a href="{% url 'artist_detail' artist_id=other_artist.id %}">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

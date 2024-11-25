@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist's Profile - Artist's Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'artist_profile.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Profile</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'artist' %}">Artists</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="content">
+        <section class="artist-intro">
+        </section>
+
+        <section class="artist-gallery">
+            <div class="gallery">
+                {% for artist in artists %}
+                <div class="gallery-item">
+                    <div class="artist-name">
+                        <p>{{ artist.name }}</p>
+                    </div>
+                    <img src="{{ artist.profile_picture.url }}" width="150" height="200" alt="Picture of {{ artist.name }}">
+
+                    <div class="card-footer p-4 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <!-- Button to navigate to artist detail page -->
+                            <a class="btn btn-outline-dark mt-auto" href="{% url 'artist_detail' artist_id=artist.id %}">Details of Artist</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media!</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/">Facebook</a> |
+                <a href="https://twitter.com/?lang=en">Twitter</a> |
+                <a href="https://www.instagram.com/">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
